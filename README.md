@@ -1,4 +1,7 @@
 ## [01 - Fundamentals](https://github.com/yrgo/gp20/blob/master/Programming%20Fundamentals/01%20-%20Fundamentals/README.md)
+
+<img src="https://i.imgur.com/qLl1zfT.png">
+
 >Welcome to the first programming lecture.
 
 ## Assignments
