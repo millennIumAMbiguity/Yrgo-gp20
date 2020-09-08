@@ -5,6 +5,9 @@ void setup()
   fullScreen();
   stroke(255);
 }
+
+boolean enableGameAnimations = true;
+
 /*
 mode 0: main menu
 mode 1: main menu - edit text 1
@@ -22,14 +25,15 @@ boolean[][] flags;
 int lastButtonID = -1;
 
 int size = 12;
-int[] offset = {1,1};
-int score = 0;
-int mineAmount = 0;
-int remaning = 0;
+int[] offset;
+int score;
+int mineAmount;
+int remaning;
 
 boolean update = true;
 
 int t = 0;
+int aniID;
 
 void draw()
 {
@@ -73,7 +77,10 @@ void draw()
 		}
 	} else if (curentMode > 2 && update){
 		background(0);
-		update = false;
+		if (enableGameAnimations && size > 10)
+			t--;
+		else 
+			update = false;
 
 		stroke(255);
 		textSize(size);
@@ -127,7 +134,34 @@ void draw()
 					}
 					text(s, x*size + offset[0] + size/5 + 1, y*size + offset[1] - size/10 + size);
 				} else { //render boxes on sqares
-					fill(220);
+					if (enableGameAnimations && size > 10){
+						switch (aniID) { //animations
+							case 0 :
+								fill(100+60*sin(0.3*y+0.04f*t)+60*cos(0.3*x+0.04f*t));
+							break;
+							case 1 :
+								fill(160+60*sin(0.3*y+0.04f*t));
+							break;
+							case 2 :
+								fill(160+60*sin(0.3*y+0.3*x+0.04f*t));
+							break;
+							case 3 :
+								fill(
+									55+200*sin(0.4*y+0.04f*t)*cos(0.4*x+0.04f*t),
+									55+200*sin(0.4*y+0.045f*t)*cos(0.4*x+(-0.035f)*t),
+									55+200*sin(0.4*y+(-0.03f)*t)*cos(0.4*x+(-0.05f)*t));
+							break;
+							case 4 :
+								fill(160+60*sin(((y+x)%10)*0.314f+0.04f*t));
+							break;
+							case 5 :
+								fill(160+60*sin(0.3*y+0.04f*t*x/mineFieldSize[0]));
+							break;
+						}
+					} else {
+						fill(220);
+					}
+					
 					rect(x*size + offset[0] + 4, y*size + offset[1] + 1, size - 4, size - 6);
 					if (flags[x][y])
 					{
@@ -161,6 +195,9 @@ void draw()
 
 
 void renderLevel(){
+
+	aniID = (int)random(-0.5, 5.6); //randome animation
+
 	update = true;
 
 	offset = new int[] {(width - mineFieldSize[0]*size)/2, (height - mineFieldSize[1]*size)/2}; //move board to center of screen
@@ -217,7 +254,7 @@ void mousePressed() {
 		int x = (mouseX-offset[0])/size;
 		int y = (mouseY-offset[1])/size;
 
-		if (x < mineFieldSize[0] && y < mineFieldSize[1]){
+		if (x < mineFieldSize[0] && y < mineFieldSize[1] && x > -1 && y > -1){
 			if (!mineFieldDetected[x][y]){
 				if (mouseButton == LEFT && !flags[x][y]){ 
 					mineFieldDetected[x][y] = true;
