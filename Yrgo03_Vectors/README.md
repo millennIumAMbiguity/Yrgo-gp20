@@ -1,3 +1,7 @@
+## [03 - Vectors](https://github.com/yrgo/gp20/tree/master/Programming%20Fundamentals/03%20-%20Vectors)
+
+<img src="https://cdn.discordapp.com/attachments/739800321689255999/753288889220726865/Shadows.gif">
+
 ## Assignments
 This assignment might be a bit hard so don't feel bad if you get stuck, just ask for help.
 
