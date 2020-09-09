@@ -1,7 +1,7 @@
 Vector velocity = new Vector(2, 2);
 Vector position = new Vector(0, 0);
 
-float size = 32f;
+float circleDiameter = 32f;
 
 void setup()
 {
@@ -19,17 +19,17 @@ void draw()
 	if (mousePressed){
 
 		line(position.x, position.y, mouseX, mouseY);
-		ellipse(position.x, position.y, size+1, size+1);
+		ellipse(position.x, position.y, circleDiameter+1, circleDiameter+1);
 
 	} else {
 
 		//Make the circle bounce on the edges of the screen.
 		position.add(velocity);
-		if (position.x < size/2 || position.x > width - size/2){
+		if (position.x < circleDiameter/2 || position.x > width - circleDiameter/2){
 			velocity.x = -velocity.x;
 			position.add(velocity);
 		}
-		if (position.y < size/2 || position.y > height - size/2){
+		if (position.y < circleDiameter/2 || position.y > height - circleDiameter/2){
 			velocity.y = -velocity.y;
 			position.add(velocity);
 		}
@@ -37,7 +37,8 @@ void draw()
 
 	coolEffect();
 
-	//ellipse(position.x, position.y, size, size); //Draw a circle (ellipse) on screen.
+	//ellipse(position.x, position.y, circleDiameter, circleDiameter); //Draw a circle (ellipse) on screen.
+
 }
 void mouseReleased(){
 
@@ -61,30 +62,25 @@ void coolEffect() {
      float distCenterF = sqrt(distCenter.x + distCenter.y);
   	
   	//caculate angles for shadow.
-    float ballAng = atan2(position.x-width/2, position.y-height/2);
+    float circleangleBetweenLightAndPixel = atan2(position.x-width/2, position.y-height/2);
 
-    float[] ballSides = {
-    	sin(ballAng + PI/2)* size/2, cos(ballAng + PI/2)* size/2};
+    float[] circleSides = {
+    	sin(circleangleBetweenLightAndPixel + PI/2)* circleDiameter/2, cos(circleangleBetweenLightAndPixel + PI/2)* circleDiameter/2};
 
-    float angle1 = atan2(position.x-width/2 - ballSides[0], position.y-height/2 - ballSides[1]);
-    float angle2 = atan2(position.x-width/2 + ballSides[0], position.y-height/2 + ballSides[1]);
+    float angle1 = atan2(position.x-width/2 - circleSides[0], position.y-height/2 - circleSides[1]);
+    float angle2 = atan2(position.x-width/2 + circleSides[0], position.y-height/2 + circleSides[1]);
 
      for (int x = 0; x < width; x++) {
       for (int y = 0; y < height; y++) {   
 
-      	//caculate normal and distance to ball
-		Vector ditanceToBall = position.copy();
-  		ditanceToBall.sub(new Vector(x, y));
-  		Vector normal = ditanceToBall.copy();
-  		ditanceToBall.square();
-      	float dist = sqrt(ditanceToBall.x + ditanceToBall.y);
+      	//caculate normal and distance to circle
+		Vector distanceToCircle = position.copy();
+  		distanceToCircle.sub(new Vector(x, y));
+  		Vector normal = distanceToCircle.copy();
+  		distanceToCircle.square();
+      	float distanceToCircleFloat = sqrt(distanceToCircle.x + distanceToCircle.y);
 
-      	float ang = atan2(x-width/2, y-height/2);
-  		Vector lDistCenter = new Vector(x-width/2, y-height/2);
-  		lDistCenter.square();
- 		float lDistCenterF = sqrt(lDistCenter.x + lDistCenter.y);
-
-      	if (abs(dist) < size/2){
+      	if (abs(distanceToCircleFloat) < circleDiameter/2){
 
       		normal = new Vector(norm(normal.x, 1, -1), norm(normal.y, 1, -1));
 
@@ -92,27 +88,28 @@ void coolEffect() {
 	      	Vector light = new Vector(width/2-x,height/2-y);
 	  		light.limit(1);
       		light.mult(normal);
-  			light.mult(max(dist,0));
+  			light.mult(max(distanceToCircleFloat,0));
       		pixels[y*width + x] = color(light.x+light.y);
 
-      	} else if ((x)%32==0 || (y)%32==0){
+      	} else if (x%32==0 || y%32==0){
       		
-      		Vector localDistanceToCenterVector = new Vector(width/2, height/2);
-	  		localDistanceToCenterVector.sub(new Vector(x, y));
-	  		localDistanceToCenterVector.square();
-	      	float localDistanceToCenter = sqrt(localDistanceToCenterVector.x + localDistanceToCenterVector.y);
+	  		Vector distanceBetweenLightAndPixel = new Vector(x-width/2, y-height/2);
 
+	  		float angleBetweenLightAndPixel = atan2(distanceBetweenLightAndPixel.x, distanceBetweenLightAndPixel.y);
+
+	  		distanceBetweenLightAndPixel.square();
+	 		float distanceBetweenLightAndPixelFloat = sqrt(distanceBetweenLightAndPixel.x + distanceBetweenLightAndPixel.y);
       		
      		if (angle1-angle2 > PI){
-     			if ((ang < angle1 && ang > angle2) || lDistCenterF < distCenterF)
-      				pixels[y*width + x] = color(size*gridSize-localDistanceToCenter);
+     			if ((angleBetweenLightAndPixel < angle1 && angleBetweenLightAndPixel > angle2) || distanceBetweenLightAndPixelFloat < distCenterF)
+      				pixels[y*width + x] = color(circleDiameter*gridSize-distanceBetweenLightAndPixelFloat);
       			else 
-		      		pixels[y*width + x] = color(min(size*gridSize-localDistanceToCenter, 32));
+		      		pixels[y*width + x] = color(min(circleDiameter*gridSize-distanceBetweenLightAndPixelFloat, 32));
      		} else {
-     			if ((ang < angle1 || ang > angle2) || lDistCenterF < distCenterF)
-      				pixels[y*width + x] = color(size*gridSize-localDistanceToCenter);
+     			if ((angleBetweenLightAndPixel < angle1 || angleBetweenLightAndPixel > angle2) || distanceBetweenLightAndPixelFloat < distCenterF)
+      				pixels[y*width + x] = color(circleDiameter*gridSize-distanceBetweenLightAndPixelFloat);
       			else 
-		      		pixels[y*width + x] = color(min(size*gridSize-localDistanceToCenter, 32));
+		      		pixels[y*width + x] = color(min(circleDiameter*gridSize-distanceBetweenLightAndPixelFloat, 32));
      		}
       	} 
       }
