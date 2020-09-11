@@ -89,7 +89,7 @@ void coolEffect() {
 	  		light.limit(1);
       		light.mult(normal);
   			light.mult(max(distanceToCircleFloat,0));
-      		pixels[y*width + x] = color(light.x+light.y + 127 * min(0, (circleDiameter/2) - (distanceToCircleFloat + 0.71f)));
+      		pixels[y*width + x] = color(light.x+light.y + 127 * min(0, (circleDiameter/2) - (distanceToCircleFloat + 0.71f))); //light + anti aliasing
 
       	} else if (x%32==0 || y%32==0){
       		
