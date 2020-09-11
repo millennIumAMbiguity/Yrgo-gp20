@@ -80,7 +80,7 @@ void coolEffect() {
   		distanceToCircle.square();
       	float distanceToCircleFloat = sqrt(distanceToCircle.x + distanceToCircle.y);
 
-      	if (abs(distanceToCircleFloat) < circleDiameter/2){
+      	if (distanceToCircleFloat < circleDiameter/2){
 
       		normal = new Vector(norm(normal.x, 1, -1), norm(normal.y, 1, -1));
 
@@ -89,7 +89,7 @@ void coolEffect() {
 	  		light.limit(1);
       		light.mult(normal);
   			light.mult(max(distanceToCircleFloat,0));
-      		pixels[y*width + x] = color(light.x+light.y);
+      		pixels[y*width + x] = color(light.x+light.y + 127 * min(0, (circleDiameter/2) - (distanceToCircleFloat + 0.71f)));
 
       	} else if (x%32==0 || y%32==0){
       		
