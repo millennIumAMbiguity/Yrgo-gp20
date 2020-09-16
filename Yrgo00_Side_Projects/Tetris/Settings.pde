@@ -1,6 +1,9 @@
 //settings
-int 	scale 		= 16;
-boolean autoScale 	= false;
+int 	scale 			= 16;
+boolean autoScale 		= false;
+
+int 	playAriaWidth	= 10;
+int 	playAriaHeight	= 20;
 
 //for full screen, see Tetris.pde
 

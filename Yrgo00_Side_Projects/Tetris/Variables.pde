@@ -1,7 +1,7 @@
 
 //todo: sort
 
-int[] 	playAria 			= new int[210]; //10x20  todo: make it so that you can change play aria
+int[] 	playAria;
 long 	gameSpeed 			= 800; 			//milliseconds to next drop. To change this see Score.pde
 int 	score;
 int 	level;

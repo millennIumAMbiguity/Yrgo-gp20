@@ -22,6 +22,7 @@
 					TObject temp = fallingObj;
 					fallingObj = hold;
 					hold = temp;
+					resetFall();
 				}
 			}}
 		else if (keyCode == CONTROL) { //soft drop

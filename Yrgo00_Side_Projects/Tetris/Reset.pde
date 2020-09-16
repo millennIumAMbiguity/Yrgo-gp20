@@ -2,8 +2,8 @@ void reset(){ //todo: restart game
 
 }
 void resetFall(){
-	fallHeight = -2;
-	fallWidth = 5;
+	fallHeight = -1;
+	fallWidth = playAriaWidth/2;
 	time = millis()+gameSpeed;
 }
 void resetObj(){

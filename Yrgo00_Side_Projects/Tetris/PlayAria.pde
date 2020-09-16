@@ -14,7 +14,7 @@ void placeHere(){ //place object at curent pos
 	for (int i = 0; i < fallingObj.blocks.length; ++i) {
 		if (fallingObj.blocks[i] == 1){
 			if (i/4-2 + fallHeight >= 0){
-				playAria[(i/4-2 + fallHeight)*10 + i%4-2 + fallWidth] = fallingObj.objColor;
+				playAria[(i/4-2 + fallHeight)*playAriaWidth + i%4-2 + fallWidth] = fallingObj.objColor;
 			} else {
 				gameover = true;
 			}
@@ -24,13 +24,13 @@ void placeHere(){ //place object at curent pos
 	resetObj(); //spawn new object
 
 	int newLines = 0;
-	for (int y = 0; y < 20; ++y) {
-		for (int x = 0; x < 10; ++x) {
-			if (playAria[y*10+x] == 0)
+	for (int y = 0; y < playAriaHeight; ++y) {
+		for (int x = 0; x < playAriaWidth; ++x) {
+			if (playAria[y*playAriaWidth+x] == 0)
 				break;
-			if (x == 9) { //full row
+			if (x == playAriaWidth-1) { //full row
 				newLines++;
-				removeLine(y*10+9);
+				removeLine(y*playAriaWidth+9);
 			}
 		}
 	}
@@ -42,10 +42,10 @@ void placeHere(){ //place object at curent pos
 }
 
 void removeLine(int inY){ //todo: make into one for loop
-	for (int i = inY; i >= 10; --i) { //move one row down
-		playAria[i] = playAria[i-10];
+	for (int i = inY; i >= playAriaWidth; --i) { //move one row down
+		playAria[i] = playAria[i-playAriaWidth];
 	}
-	for (int i = 0; i < 10; ++i) { //remove top row
+	for (int i = 0; i < playAriaWidth; ++i) { //remove top row
 		playAria[i] = 0;
 	}
 }
@@ -54,11 +54,11 @@ void removeLine(int inY){ //todo: make into one for loop
 boolean collision(){
 	for (int i = 0; i < fallingObj.blocks.length; ++i) {
 		if (fallingObj.blocks[i] == 1 && //floor collision
-			i/4 + fallHeight > 21 || 
+			i/4 + fallHeight > playAriaHeight+1 || 
 
 			fallingObj.blocks[i] == 1 && //map collision
 			i/4-2 + fallHeight >= 0 &&
-			playAria[(i/4-2 + fallHeight)*10 + i%4-2 + fallWidth] != 0)
+			playAria[(i/4-2 + fallHeight)*playAriaWidth + i%4-2 + fallWidth] != 0)
 
 			return true; //found collision
 	}
@@ -80,10 +80,10 @@ int moveSide(int n){
 	//collision with walls
 	if (n >= 0) {
 		int right = min(1,fallingObj.blocks[2] + fallingObj.blocks[6] + fallingObj.blocks[10] + fallingObj.blocks[14]) + min(1,fallingObj.blocks[7] + fallingObj.blocks[11]);
-		if (fallWidth + right > 10){
+		if (fallWidth + right > playAriaWidth){
 			fallWidth--;
 			mov--;
-			if (fallWidth + right > 10){
+			if (fallWidth + right > playAriaWidth){
 				fallWidth--;
 				mov--;
 			}

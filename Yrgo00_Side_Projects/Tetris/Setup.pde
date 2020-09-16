@@ -4,10 +4,12 @@ void localSetup()
   resetFall();
 
   if (autoScale)
-  	scale = (height-38)/20;
+  	scale = (height-38)/playAriaHeight;
 
-  offsetX = width/2-5*scale;
-  offsetY = height/2 -10*scale;
+  playAria = new int[playAriaHeight*playAriaWidth+playAriaWidth];
+
+  offsetX = width /2 - playAriaWidth /2 *scale;
+  offsetY = height/2 - playAriaHeight/2 *scale;
 
   time = millis()+gameSpeed;
 }
