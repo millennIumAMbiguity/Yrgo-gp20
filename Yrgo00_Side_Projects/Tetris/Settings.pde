@@ -10,3 +10,5 @@ int 	playAriaHeight	= 20;
 //for colors, see ColorProfile.pde
 
 //for gamespeed, see Score.pde
+
+//for block shapes and amount, see Blocks.pde
