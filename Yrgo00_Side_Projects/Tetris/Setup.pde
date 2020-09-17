@@ -1,15 +1,18 @@
 void localSetup()
 {
-  stroke(textNOutlines);
-  resetObj();
+	if (loadSettingsFile)
+		loadSettingFile();
 
-  if (autoScale)
-  	scale = (height-38)/playAriaHeight;
+	stroke(textNOutlines);
+	resetObj();
 
-  playAria = new int[playAriaHeight*playAriaWidth+playAriaWidth];
+	if (autoScale)
+		scale = (height-38)/playAriaHeight;
 
-  offsetX = width /2 - playAriaWidth /2 *scale;
-  offsetY = height/2 - playAriaHeight/2 *scale;
+	playAria = new int[playAriaHeight*playAriaWidth+playAriaWidth];
 
-  time = millis()+gameSpeed;
+	offsetX = width /2 - playAriaWidth /2 *scale;
+	offsetY = height/2 - playAriaHeight/2 *scale;
+
+	time = millis()+gameSpeed;
 }
