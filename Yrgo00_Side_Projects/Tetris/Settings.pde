@@ -19,7 +19,7 @@ boolean loadSettingsFile = true;
 void loadSettingFile(){
 	try
 	{
-		String[] file = loadStrings("settings.config");
+		String[] file = loadStrings("settings.ini");
 		scale 			= Integer.parseInt	  (deFormat(file[0]));
 		autoScale 		= Boolean.parseBoolean(deFormat(file[1]));
 		playAriaWidth 	= Integer.parseInt	  (deFormat(file[2]));
