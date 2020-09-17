@@ -8,6 +8,7 @@ void reset(){ //todo: restart game
  	linesForNextLevel = 10;
 	hold = null;
  	next = new TObject();
+ 	updateScreen = true;
 
  	resetObj();
 }
