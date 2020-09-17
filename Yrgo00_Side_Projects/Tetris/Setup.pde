@@ -1,8 +1,5 @@
 void localSetup()
 {
-	if (loadSettingsFile)
-		loadSettingFile();
-
 	stroke(textNOutlines);
 	resetObj();
 

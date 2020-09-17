@@ -5,9 +5,10 @@ boolean autoScale 		= false;
 int 	playAriaWidth	= 10;
 int 	playAriaHeight	= 20;
 
+boolean fullScreen 		= true;
+
 boolean loadSettingsFile = true;
 
-//for full screen, see Tetris.pde
 
 //for colors, see ColorProfile.pde
 
@@ -23,6 +24,8 @@ void loadSettingFile(){
 		autoScale 		= Boolean.parseBoolean(deFormat(file[1]));
 		playAriaWidth 	= Integer.parseInt	  (deFormat(file[2]));
 		playAriaHeight 	= Integer.parseInt	  (deFormat(file[3]));
+		loadSettingsFile= Boolean.parseBoolean(deFormat(file[4]));
+
 	}
 	catch (NullPointerException error)
 	{
