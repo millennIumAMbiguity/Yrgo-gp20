@@ -16,3 +16,4 @@ int 	fallHeight;
 int 	fallWidth 			= 5;
 boolean gameover;
 int 	offsetX, offsetY;
+boolean updateScreen 		= true;
