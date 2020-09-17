@@ -7,7 +7,7 @@ int 	score;
 int 	level;
 int 	linesCleared;
 int 	linesForNextLevel 	= 10;
-TObject fallingObj 			= new TObject();
+TObject fallingObj;
 TObject hold;
 TObject next 				= new TObject();
 boolean holdV;

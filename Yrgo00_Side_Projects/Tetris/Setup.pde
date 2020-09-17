@@ -1,7 +1,7 @@
 void localSetup()
 {
   stroke(textNOutlines);
-  resetFall();
+  resetObj();
 
   if (autoScale)
   	scale = (height-38)/playAriaHeight;
