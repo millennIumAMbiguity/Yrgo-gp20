@@ -18,7 +18,7 @@ public static class InputHandler {
 			moveDown 	 = true;
 		else if (					 key == 'g')
 			enableGravity = !enableGravity;
-	 }
+	}
 
 	//When a key is released, we will set our variable to false
 	public static  void inputKeyReleased(int keyCode, char key)
@@ -42,7 +42,7 @@ public static class InputHandler {
 	}
 	//acceleration or deceleration to 0
 	private static float input(boolean bPositive, boolean bNegative, float inputVelosity){
-			 if (bPositive) return  					 acceleration  * deltaTime;
+		if 		(bPositive) return  					 acceleration  * deltaTime;
 		else if (bNegative) return -					 acceleration  * deltaTime;
 		else 				return -clamp(inputVelosity, acceleration) * deltaTime; 
 	}
