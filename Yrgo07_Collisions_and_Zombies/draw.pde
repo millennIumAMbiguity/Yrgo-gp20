@@ -39,7 +39,7 @@ void draw()
 
 
   //show game over text
-  if (totalZ >= 100){
+  if (totalZ >= caracters.length){
     //caculate score
     if(timeString == null){
       //time format time
