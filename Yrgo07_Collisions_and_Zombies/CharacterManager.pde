@@ -28,27 +28,27 @@ public class CharacterManager
 		addToGrid();
 	}
 
+	//add this obj to the grid
 	void addToGrid(){
-		removeFromGrid();
+		removeFromGrid(); //remove from current grid pos
 
 		intGridPos = gridX*((int)position.y/gridSize)+(int)position.x/gridSize;
 		caracterGrid[intGridPos].add(this);
 	}
-	void addToGrid(int g){
+	void addToGrid(int g){ //addToGrid with precacluated grid pos
 		removeFromGrid();
 
 		intGridPos = g;
 		caracterGrid[intGridPos].add(this);
 	}
 	public void removeFromGrid(){
-		if (intGridPos != -1){
+		if (intGridPos != -1){ //remove from grid and sett null (-1)
 			caracterGrid[intGridPos].remove(this);
 			intGridPos = -1;
 		}
 	}
 
-	public void collision() {
-	}
+	public void collision() {}
 
 	public void edgeCollision() {
 		//bounce collision
@@ -64,11 +64,13 @@ public class CharacterManager
 		}
 	}
 	public void move() {
+		//move character
 		position.x += velocity.x;
 		position.y += velocity.y;
 
 		edgeCollision();
 
+		//check for canged grid pos
 		int g = gridX*((int)position.y/gridSize)+(int)position.x/gridSize;
 		if (intGridPos != g)
 			addToGrid(g);

@@ -1,11 +1,11 @@
-static CharacterManager[] caracters = new CharacterManager[100];
-static int gridSize = 64;
-static int gridX, gridY;
-static ArrayList<CharacterManager>[] caracterGrid;
+CharacterManager[] caracters = new CharacterManager[100];
+int gridSize = 64;
+int gridX, gridY;
+ArrayList<CharacterManager>[] caracterGrid;
 
-static float maxSpeed = 0.2;
-static float zombieSpeed = 0.1f;
+float maxSpeed = 0.2;
+float zombieSpeed = 0.1f;
 
-static int maxSize = 16;
+int maxSize = 16;
 
-long score;
+String timeString;
