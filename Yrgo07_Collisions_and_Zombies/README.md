@@ -1,6 +1,7 @@
 ## [07 - Collisions and Zombies](https://github.com/yrgo/gp20/tree/master/Programming%20Fundamentals/07%20-%20Collision%20and%20Zombies)
 
 <img src="https://cdn.discordapp.com/attachments/739800321689255999/758389145122111538/unknown.png">
+<img src="https://cdn.discordapp.com/attachments/739800321689255999/758606924613812324/unknown.png">
 
 ## Assignments
 1. Create a new class called character and make a character manager. (the character should initially behave like the ball class from previous lecture).
