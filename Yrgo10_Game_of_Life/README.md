@@ -1,8 +1,7 @@
 ## [10 - Game of Life](https://github.com/yrgo/gp20/tree/master/Programming%20Fundamentals/10%20-%20Game%20of%20Life)
 
-<img src="https://cdn.discordapp.com/attachments/739800321689255999/765585353972252682/game_of_life.gif">
+<img src="https://cdn.discordapp.com/attachments/339937717343223809/774236092093956106/game_of_life0.png">
 
-<img src="blob:https://giphy.com/f3d69b2d-a122-460f-99d2-de4f5e4dd86c">
 
 ## Assignments
 You have about 2 weeks to complete the assignment.  
