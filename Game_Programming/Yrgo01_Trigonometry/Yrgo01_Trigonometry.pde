@@ -4,7 +4,7 @@ int points = 100;
 int cruveSize = 32;
 int pointSize = 4;
 float cruveWaves = 0.1f;
-float timeSpeed = 0.02f;
+float timeSpeed = 0.0125f;
 //spiral
 int pointsPerCircle = 16;
 int spiralLenght = 12;
@@ -28,7 +28,7 @@ float time = 0;
 
 void setup()
 {
-	size(512, 512);
+	size(828, 512);
 	surface.setTitle("Trigonometry");
 	surface.setResizable(true);
 	background(backgroundColor);
@@ -65,6 +65,9 @@ void update() {
 
 void lateUpdate() {
 	time += timeSpeed;
+    //if (time < 8f) {
+    //    saveFrame("reander/######.png");
+    //}
 }
 
 void spiral() {
