@@ -1,11 +1,12 @@
 
-int shiftSize = 8; 
+int shiftSize = 8; //board weight and height == 2^<shiftSize>
+int size = 3;      //cell size
+
+
 int boardSize;
 int boardLength;
-int size = 3;
 
 Cell[] cellsCalculate;
-Cell[] cellsEffect;
 Cell[] cellsDraw;
 
 void setup() {
@@ -22,7 +23,6 @@ void setup() {
 	//create cells
 	boardLength = (boardSize << shiftSize) + boardSize + 1;
 	cellsCalculate = new Cell[boardLength];
-	cellsEffect = new Cell[boardLength];
 	cellsDraw = new Cell[boardLength];
 	
 	println("boardLength : " + boardLength);
@@ -36,25 +36,12 @@ void setup() {
 		ce.getNabors();
 	}
 	
-	
-	
 	fullArrayShift(cellsCalculate, cellsDraw);
-	fullArrayShift(cellsCalculate, cellsEffect);
 }
 
 void draw() {
 	//delay(500);
 	//background(0);
-	
-	/*
-	if (calculateLifeWork1Done && calculateLifeWork2Done && calculateLifeWork3Done && calculateLifeWork4Done && effectWork1Done && effectWork2Done && effectWork3Done && effectWork4Done)
-	updateThread4();
-	*/
-	
-	/*
-	if (effectWork1Done && calculateLifeWork1Done)
-	updateThread2();
-	*/
 
 	if (calculateLifeWork1Done)
 	updateThread1();
